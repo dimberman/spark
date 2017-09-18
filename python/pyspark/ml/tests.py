@@ -16,7 +16,7 @@
 #
 
 """
-Unit mllib_tests for MLlib Python DataFrame-based APIs.
+Unit tests for MLlib Python DataFrame-based APIs.
 """
 import sys
 if sys.version > '3':
@@ -76,7 +76,7 @@ ser = PickleSerializer()
 
 class MLlibTestCase(unittest.TestCase):
     def setUp(self):
-        self.sc = SparkContext('local[4]', "MLlib mllib_tests")
+        self.sc = SparkContext('local[4]', "MLlib tests")
         self.spark = SparkSession(self.sc)
 
     def tearDown(self):
@@ -508,7 +508,7 @@ class EvaluatorTests(SparkSessionTestCase):
 
     def test_java_params(self):
         """
-        This mllib_tests a bug fixed by SPARK-18274 which causes multiple copies
+        This tests a bug fixed by SPARK-18274 which causes multiple copies
         of a Params instance in Python to be linked to the same Java instance.
         """
         evaluator = RegressionEvaluator(metricName="r2")
@@ -768,7 +768,7 @@ class CrossValidatorTests(SparkSessionTestCase):
         self.assertEqual(1.0, bestModelMetric, "Best model has R-squared of 1")
 
     def test_save_load_trained_model(self):
-        # This mllib_tests saving and loading the trained model only.
+        # This tests saving and loading the trained model only.
         # Save/load for CrossValidator will be added later: SPARK-13786
         temp_path = tempfile.mkdtemp()
         dataset = self.spark.createDataFrame(
@@ -919,7 +919,7 @@ class TrainValidationSplitTests(SparkSessionTestCase):
         self.assertEqual(1.0, max(validationMetrics))
 
     def test_save_load_trained_model(self):
-        # This mllib_tests saving and loading the trained model only.
+        # This tests saving and loading the trained model only.
         # Save/load for TrainValidationSplit will be added later: SPARK-13786
         temp_path = tempfile.mkdtemp()
         dataset = self.spark.createDataFrame(
@@ -943,7 +943,7 @@ class TrainValidationSplitTests(SparkSessionTestCase):
         self.assertEqual(loadedLrModel.intercept, lrModel.intercept)
 
     def test_save_load_simple_estimator(self):
-        # This mllib_tests saving and loading the trained model only.
+        # This tests saving and loading the trained model only.
         # Save/load for TrainValidationSplit will be added later: SPARK-13786
         temp_path = tempfile.mkdtemp()
         dataset = self.spark.createDataFrame(
@@ -972,7 +972,7 @@ class TrainValidationSplitTests(SparkSessionTestCase):
         self.assertEqual(loadedModel.bestModel.uid, tvsModel.bestModel.uid)
 
     def test_save_load_nested_estimator(self):
-        # This mllib_tests saving and loading the trained model only.
+        # This tests saving and loading the trained model only.
         # Save/load for TrainValidationSplit will be added later: SPARK-13786
         temp_path = tempfile.mkdtemp()
         dataset = self.spark.createDataFrame(
@@ -1824,7 +1824,7 @@ class VectorTests(MLlibTestCase):
 
     def test_conversion(self):
         # numpy arrays should be automatically upcast to float64
-        # mllib_tests for fix of [SPARK-5089]
+        # tests for fix of [SPARK-5089]
         v = array([1, 2, 3, 4], dtype='float64')
         dv = DenseVector(v)
         self.assertTrue(dv.array.dtype == 'float64')

@@ -338,7 +338,7 @@ if __name__ == "__main__":
     # even in these small test examples:
     spark = SparkSession.builder\
         .master("local[2]")\
-        .appName("ml.evaluation mllib_tests")\
+        .appName("ml.evaluation tests")\
         .getOrCreate()
     globs['spark'] = spark
     temp_path = tempfile.mkdtemp()
