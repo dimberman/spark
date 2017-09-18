@@ -111,7 +111,7 @@ def main(infile, outfile):
     try:
         boot_time = time.time()
         split_index = read_int(infile)
-        if split_index == -1:  # for unit mllib_tests
+        if split_index == -1:  # for unit tests
             exit(-1)
 
         version = utf8_deserializer.loads(infile)

@@ -73,7 +73,7 @@ def _test():
     globs = pyspark.sql.conf.__dict__.copy()
     spark = SparkSession.builder\
         .master("local[4]")\
-        .appName("sql.conf mllib_tests")\
+        .appName("sql.conf tests")\
         .getOrCreate()
     globs['sc'] = spark.sparkContext
     globs['spark'] = spark

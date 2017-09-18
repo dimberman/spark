@@ -304,7 +304,7 @@ class Catalog(object):
         """(Internal use only) Drop all existing databases (except "default"), tables,
         partitions and functions, and set the current database to "default".
 
-        This is mainly used for mllib_tests.
+        This is mainly used for tests.
         """
         self._jsparkSession.sessionState().catalog().reset()
 
@@ -320,7 +320,7 @@ def _test():
     globs = pyspark.sql.catalog.__dict__.copy()
     spark = SparkSession.builder\
         .master("local[4]")\
-        .appName("sql.catalog mllib_tests")\
+        .appName("sql.catalog tests")\
         .getOrCreate()
     globs['sc'] = spark.sparkContext
     globs['spark'] = spark

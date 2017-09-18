@@ -647,7 +647,7 @@ def _test():
     globs = pyspark.sql.column.__dict__.copy()
     spark = SparkSession.builder\
         .master("local[4]")\
-        .appName("sql.column mllib_tests")\
+        .appName("sql.column tests")\
         .getOrCreate()
     sc = spark.sparkContext
     globs['spark'] = spark

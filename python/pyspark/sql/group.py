@@ -202,7 +202,7 @@ def _test():
     globs = pyspark.sql.group.__dict__.copy()
     spark = SparkSession.builder\
         .master("local[4]")\
-        .appName("sql.group mllib_tests")\
+        .appName("sql.group tests")\
         .getOrCreate()
     sc = spark.sparkContext
     globs['sc'] = sc
