@@ -18,7 +18,7 @@ else:
 
 class MLlibTestCase(unittest.TestCase):
     def setUp(self):
-        self.sc = SparkContext('local[4]', "MLlib mllib_tests")
+        self.sc = SparkContext('local[4]', "MLlib tests")
         self.spark = SparkSession(self.sc)
 
     def tearDown(self):
@@ -27,7 +27,7 @@ class MLlibTestCase(unittest.TestCase):
 
 class MLLibStreamingTestCase(unittest.TestCase):
     def setUp(self):
-        self.sc = SparkContext('local[4]', "MLlib mllib_tests")
+        self.sc = SparkContext('local[4]', "MLlib tests")
         self.ssc = StreamingContext(self.sc, 1.0)
 
     def tearDown(self):
@@ -38,7 +38,7 @@ class MLLibStreamingTestCase(unittest.TestCase):
     def _eventually(condition, timeout=30.0, catch_assertions=False):
         """
         Wait a given amount of time for a condition to pass, else fail with an error.
-        This is a helper utility for streaming ML mllib_tests.
+        This is a helper utility for streaming ML tests.
         :param condition: Function that checks for termination conditions.
                           condition() can return:
                            - True: Conditions met. Return without error.

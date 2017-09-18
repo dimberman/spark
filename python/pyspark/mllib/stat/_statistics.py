@@ -246,7 +246,7 @@ class Statistics(object):
     def kolmogorovSmirnovTest(data, distName="norm", *params):
         """
         Performs the Kolmogorov-Smirnov (KS) test for data sampled from
-        a continuous distribution. It mllib_tests the null hypothesis that
+        a continuous distribution. It tests the null hypothesis that
         the data is generated from a particular distribution.
 
         The given data is sorted and the Empirical Cumulative
@@ -307,7 +307,7 @@ def _test():
     globs = globals().copy()
     spark = SparkSession.builder\
         .master("local[4]")\
-        .appName("mllib.stat.statistics mllib_tests")\
+        .appName("mllib.stat.statistics tests")\
         .getOrCreate()
     globs['sc'] = spark.sparkContext
     (failure_count, test_count) = doctest.testmod(globs=globs, optionflags=doctest.ELLIPSIS)

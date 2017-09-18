@@ -128,7 +128,7 @@ class VectorTests(MLlibTestCase):
 
     def test_conversion(self):
         # numpy arrays should be automatically upcast to float64
-        # mllib_tests for fix of [SPARK-5089]
+        # tests for fix of [SPARK-5089]
         v = array([1, 2, 3, 4], dtype='float64')
         dv = DenseVector(v)
         self.assertTrue(dv.array.dtype == 'float64')

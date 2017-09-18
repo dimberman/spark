@@ -813,7 +813,7 @@ def _test():
     globs = globals().copy()
     spark = SparkSession.builder\
         .master("local[4]")\
-        .appName("mllib.feature mllib_tests")\
+        .appName("mllib.feature tests")\
         .getOrCreate()
     globs['sc'] = spark.sparkContext
     (failure_count, test_count) = doctest.testmod(globs=globs, optionflags=doctest.ELLIPSIS)

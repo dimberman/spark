@@ -16,7 +16,7 @@
 #
 
 """
-Fuller unit mllib_tests for Python MLlib.
+Fuller unit tests for Python MLlib.
 """
 
 import os
@@ -78,7 +78,7 @@ try:
     import scipy.sparse
     _have_scipy = True
 except:
-    # No SciPy, but that's okay, we'll skip those mllib_tests
+    # No SciPy, but that's okay, we'll skip those tests
     pass
 
 ser = PickleSerializer()
@@ -86,7 +86,7 @@ ser = PickleSerializer()
 
 class MLlibTestCase(unittest.TestCase):
     def setUp(self):
-        self.sc = SparkContext('local[4]', "MLlib mllib_tests")
+        self.sc = SparkContext('local[4]', "MLlib tests")
         self.spark = SparkSession(self.sc)
 
     def tearDown(self):
@@ -95,7 +95,7 @@ class MLlibTestCase(unittest.TestCase):
 
 class MLLibStreamingTestCase(unittest.TestCase):
     def setUp(self):
-        self.sc = SparkContext('local[4]', "MLlib mllib_tests")
+        self.sc = SparkContext('local[4]', "MLlib tests")
         self.ssc = StreamingContext(self.sc, 1.0)
 
     def tearDown(self):
@@ -106,7 +106,7 @@ class MLLibStreamingTestCase(unittest.TestCase):
     def _eventually(condition, timeout=30.0, catch_assertions=False):
         """
         Wait a given amount of time for a condition to pass, else fail with an error.
-        This is a helper utility for streaming ML mllib_tests.
+        This is a helper utility for streaming ML tests.
         :param condition: Function that checks for termination conditions.
                           condition() can return:
                            - True: Conditions met. Return without error.
@@ -1409,13 +1409,13 @@ class DimensionalityReductionTests(MLlibTestCase):
 
 
 if __name__ == "__main__":
-    from pyspark.mllib.mllib_tests import *
+    from pyspark.mllib.tests import *
     if not _have_scipy:
-        print("NOTE: Skipping SciPy mllib_tests as it does not seem to be installed")
+        print("NOTE: Skipping SciPy tests as it does not seem to be installed")
     if xmlrunner:
         unittest.main(testRunner=xmlrunner.XMLTestRunner(output='target/test-reports'))
     else:
         unittest.main()
     if not _have_scipy:
-        print("NOTE: SciPy mllib_tests were skipped as it does not seem to be installed")
+        print("NOTE: SciPy tests were skipped as it does not seem to be installed")
     sc.stop()

@@ -829,7 +829,7 @@ def _test():
     globs = pyspark.mllib.regression.__dict__.copy()
     spark = SparkSession.builder\
         .master("local[2]")\
-        .appName("mllib.regression mllib_tests")\
+        .appName("mllib.regression tests")\
         .getOrCreate()
     globs['sc'] = spark.sparkContext
     (failure_count, test_count) = doctest.testmod(globs=globs, optionflags=doctest.ELLIPSIS)

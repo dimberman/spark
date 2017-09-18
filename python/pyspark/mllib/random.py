@@ -415,7 +415,7 @@ def _test():
     # even in these small test examples:
     spark = SparkSession.builder\
         .master("local[2]")\
-        .appName("mllib.random mllib_tests")\
+        .appName("mllib.random tests")\
         .getOrCreate()
     globs['sc'] = spark.sparkContext
     (failure_count, test_count) = doctest.testmod(globs=globs, optionflags=doctest.ELLIPSIS)
