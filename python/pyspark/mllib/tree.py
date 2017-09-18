@@ -648,7 +648,7 @@ def _test():
     from pyspark.sql import SparkSession
     spark = SparkSession.builder\
         .master("local[4]")\
-        .appName("mllib.tree tests")\
+        .appName("mllib.tree mllib_tests")\
         .getOrCreate()
     globs['sc'] = spark.sparkContext
     (failure_count, test_count) = doctest.testmod(globs=globs, optionflags=doctest.ELLIPSIS)

@@ -16,7 +16,7 @@
 #
 
 """
-Unit tests for PySpark; additional tests are implemented as doctests in
+Unit mllib_tests for PySpark; additional mllib_tests are implemented as doctests in
 individual modules.
 """
 
@@ -78,13 +78,13 @@ try:
     import scipy.sparse
     _have_scipy = True
 except:
-    # No SciPy, but that's okay, we'll skip those tests
+    # No SciPy, but that's okay, we'll skip those mllib_tests
     pass
 try:
     import numpy as np
     _have_numpy = True
 except:
-    # No NumPy, but that's okay, we'll skip those tests
+    # No NumPy, but that's okay, we'll skip those mllib_tests
     pass
 
 
@@ -2261,7 +2261,7 @@ class KeywordOnlyTests(unittest.TestCase):
 @unittest.skipIf(not _have_scipy, "SciPy not installed")
 class SciPyTests(PySparkTestCase):
 
-    """General PySpark tests that depend on scipy """
+    """General PySpark mllib_tests that depend on scipy """
 
     def test_serialize(self):
         from scipy.special import gammaln
@@ -2274,7 +2274,7 @@ class SciPyTests(PySparkTestCase):
 @unittest.skipIf(not _have_numpy, "NumPy not installed")
 class NumPyTests(PySparkTestCase):
 
-    """General PySpark tests that depend on numpy """
+    """General PySpark mllib_tests that depend on numpy """
 
     def test_statcounter_array(self):
         x = self.sc.parallelize([np.array([1.0, 1.0]), np.array([2.0, 2.0]), np.array([3.0, 3.0])])
@@ -2308,14 +2308,14 @@ class NumPyTests(PySparkTestCase):
 if __name__ == "__main__":
     from pyspark.tests import *
     if not _have_scipy:
-        print("NOTE: Skipping SciPy tests as it does not seem to be installed")
+        print("NOTE: Skipping SciPy mllib_tests as it does not seem to be installed")
     if not _have_numpy:
-        print("NOTE: Skipping NumPy tests as it does not seem to be installed")
+        print("NOTE: Skipping NumPy mllib_tests as it does not seem to be installed")
     if xmlrunner:
         unittest.main(testRunner=xmlrunner.XMLTestRunner(output='target/test-reports'))
     else:
         unittest.main()
     if not _have_scipy:
-        print("NOTE: SciPy tests were skipped as it does not seem to be installed")
+        print("NOTE: SciPy mllib_tests were skipped as it does not seem to be installed")
     if not _have_numpy:
-        print("NOTE: NumPy tests were skipped as it does not seem to be installed")
+        print("NOTE: NumPy mllib_tests were skipped as it does not seem to be installed")

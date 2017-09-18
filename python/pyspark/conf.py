@@ -83,7 +83,7 @@ class SparkConf(object):
     properties as well. In this case, any parameters you set directly on
     the C{SparkConf} object take priority over system properties.
 
-    For unit tests, you can also call C{SparkConf(false)} to skip
+    For unit mllib_tests, you can also call C{SparkConf(false)} to skip
     loading external settings and get the same configuration no matter
     what the system properties are.
 

@@ -755,7 +755,7 @@ def _test():
     globs = pyspark.mllib.classification.__dict__.copy()
     spark = SparkSession.builder\
         .master("local[4]")\
-        .appName("mllib.classification tests")\
+        .appName("mllib.classification mllib_tests")\
         .getOrCreate()
     globs['sc'] = spark.sparkContext
     (failure_count, test_count) = doctest.testmod(globs=globs, optionflags=doctest.ELLIPSIS)

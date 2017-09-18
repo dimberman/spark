@@ -794,7 +794,7 @@ class StreamingContextTests(PySparkStreamingTestCase):
 
     def test_get_active_or_create(self):
         # Test StreamingContext.getActiveOrCreate() without checkpoint data
-        # See CheckpointTests for tests with checkpoint data
+        # See CheckpointTests for mllib_tests with checkpoint data
         self.ssc = None
         self.assertEqual(StreamingContext.getActive(), None)
 
@@ -1463,7 +1463,7 @@ class KinesisStreamTests(PySparkStreamingTestCase):
 # the artifact jars are in different directories.
 def search_jar(dir, name_prefix):
     # We should ignore the following jars
-    ignored_jar_suffixes = ("javadoc.jar", "sources.jar", "test-sources.jar", "tests.jar")
+    ignored_jar_suffixes = ("javadoc.jar", "sources.jar", "test-sources.jar", "mllib_tests.jar")
     jars = (glob.glob(os.path.join(dir, "target/scala-*/" + name_prefix + "-*.jar")) +  # sbt build
             glob.glob(os.path.join(dir, "target/" + name_prefix + "_*.jar")))  # maven build
     return [jar for jar in jars if not jar.endswith(ignored_jar_suffixes)]
@@ -1541,8 +1541,8 @@ if __name__ == "__main__":
     if kinesis_jar_present is True:
         testcases.append(KinesisStreamTests)
     elif are_kinesis_tests_enabled is False:
-        sys.stderr.write("Skipping all Kinesis Python tests as the optional Kinesis project was "
-                         "not compiled into a JAR. To run these tests, "
+        sys.stderr.write("Skipping all Kinesis Python mllib_tests as the optional Kinesis project was "
+                         "not compiled into a JAR. To run these mllib_tests, "
                          "you need to build Spark with 'build/sbt -Pkinesis-asl assembly/package "
                          "streaming-kinesis-asl-assembly/assembly' or "
                          "'build/mvn -Pkinesis-asl package' before running this test.")
@@ -1554,7 +1554,7 @@ if __name__ == "__main__":
             "assembly/package streaming-kinesis-asl-assembly/assembly'"
             "or 'build/mvn -Pkinesis-asl package' before running this test.")
 
-    sys.stderr.write("Running tests: %s \n" % (str(testcases)))
+    sys.stderr.write("Running mllib_tests: %s \n" % (str(testcases)))
     failed = False
     for testcase in testcases:
         sys.stderr.write("[Running %s]\n" % (testcase))

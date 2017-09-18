@@ -2169,7 +2169,7 @@ def _test():
     globs = pyspark.sql.functions.__dict__.copy()
     spark = SparkSession.builder\
         .master("local[4]")\
-        .appName("sql.functions tests")\
+        .appName("sql.functions mllib_tests")\
         .getOrCreate()
     sc = spark.sparkContext
     globs['sc'] = sc

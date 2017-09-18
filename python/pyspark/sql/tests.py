@@ -17,7 +17,7 @@
 #
 
 """
-Unit tests for pyspark.sql; additional tests are implemented as doctests in
+Unit mllib_tests for pyspark.sql; additional mllib_tests are implemented as doctests in
 individual modules.
 """
 import os
@@ -53,7 +53,7 @@ try:
     import pandas
     _have_pandas = True
 except:
-    # No Pandas, but that's okay, we'll skip those tests
+    # No Pandas, but that's okay, we'll skip those mllib_tests
     pass
 
 from pyspark import SparkContext
@@ -73,7 +73,7 @@ try:
     import pyarrow
     _have_arrow = True
 except:
-    # No Arrow, but that's okay, we'll skip those tests
+    # No Arrow, but that's okay, we'll skip those mllib_tests
     pass
 
 
@@ -103,7 +103,7 @@ class ExamplePointUDT(UserDefinedType):
 
     @classmethod
     def module(cls):
-        return 'pyspark.sql.tests'
+        return 'pyspark.sql.mllib_tests'
 
     @classmethod
     def scalaUDT(cls):
@@ -2157,7 +2157,7 @@ class SQLTests(ReusedPySparkTestCase):
             expected = [Row(a=0, b=0)]
             self.assertEqual(actual, expected)
         finally:
-            # We should unset this. Otherwise, other tests are affected.
+            # We should unset this. Otherwise, other mllib_tests are affected.
             self.spark.conf.unset("spark.sql.crossJoin.enabled")
 
     # Regression test for invalid join methods when on is None, Spark-14761
@@ -2606,7 +2606,7 @@ class SQLTests2(ReusedPySparkTestCase):
         cls.spark.stop()
 
     # We can't include this test into SQLTests because we will stop class's SparkContext and cause
-    # other tests failed.
+    # other mllib_tests failed.
     def test_sparksession_with_stopped_sparkcontext(self):
         self.sc.stop()
         sc = SparkContext('local[4]', self.sc.appName)

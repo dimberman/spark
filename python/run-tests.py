@@ -49,7 +49,7 @@ def print_red(text):
     print('\033[31m' + text + '\033[0m')
 
 
-LOG_FILE = os.path.join(SPARK_HOME, "python/unit-tests.log")
+LOG_FILE = os.path.join(SPARK_HOME, "python/unit-mllib_tests.log")
 FAILURE_REPORTING_LOCK = Lock()
 LOGGER = logging.getLogger()
 
@@ -122,7 +122,7 @@ def get_default_python_executables():
 
 def parse_opts():
     parser = OptionParser(
-        prog="run-tests"
+        prog="run-mllib_tests"
     )
     parser.add_option(
         "--python-executables", type="string", default=','.join(get_default_python_executables()),
@@ -157,7 +157,7 @@ def main():
     else:
         log_level = logging.INFO
     logging.basicConfig(stream=sys.stdout, level=log_level, format="%(message)s")
-    LOGGER.info("Running PySpark tests. Output is in %s", LOG_FILE)
+    LOGGER.info("Running PySpark mllib_tests. Output is in %s", LOG_FILE)
     if os.path.exists(LOG_FILE):
         os.remove(LOG_FILE)
     python_execs = opts.python_executables.split(',')
@@ -183,8 +183,8 @@ def main():
         for module in modules_to_test:
             if python_implementation not in module.blacklisted_python_implementations:
                 for test_goal in module.python_test_goals:
-                    if test_goal in ('pyspark.streaming.tests', 'pyspark.mllib.tests',
-                                     'pyspark.tests', 'pyspark.sql.tests'):
+                    if test_goal in ('pyspark.streaming.mllib_tests', 'pyspark.mllib.mllib_tests',
+                                     'pyspark.mllib_tests', 'pyspark.sql.mllib_tests'):
                         priority = 0
                     else:
                         priority = 100

@@ -514,7 +514,7 @@ def _test():
     # even in these small test examples:
     spark = SparkSession.builder\
         .master("local[2]")\
-        .appName("mllib.util tests")\
+        .appName("mllib.util mllib_tests")\
         .getOrCreate()
     globs['spark'] = spark
     globs['sc'] = spark.sparkContext

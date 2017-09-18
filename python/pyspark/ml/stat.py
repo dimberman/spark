@@ -142,7 +142,7 @@ if __name__ == "__main__":
     # even in these small test examples:
     spark = SparkSession.builder \
         .master("local[2]") \
-        .appName("ml.stat tests") \
+        .appName("ml.stat mllib_tests") \
         .getOrCreate()
     sc = spark.sparkContext
     globs['sc'] = sc

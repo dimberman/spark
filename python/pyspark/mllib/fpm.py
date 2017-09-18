@@ -180,7 +180,7 @@ def _test():
     globs = pyspark.mllib.fpm.__dict__.copy()
     spark = SparkSession.builder\
         .master("local[4]")\
-        .appName("mllib.fpm tests")\
+        .appName("mllib.fpm mllib_tests")\
         .getOrCreate()
     globs['sc'] = spark.sparkContext
     import tempfile

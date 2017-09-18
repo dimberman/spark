@@ -1370,7 +1370,7 @@ def _test():
     globs = pyspark.mllib.linalg.distributed.__dict__.copy()
     spark = SparkSession.builder\
         .master("local[2]")\
-        .appName("mllib.linalg.distributed tests")\
+        .appName("mllib.linalg.distributed mllib_tests")\
         .getOrCreate()
     globs['sc'] = spark.sparkContext
     globs['Matrices'] = Matrices
